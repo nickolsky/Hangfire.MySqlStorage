@@ -49,6 +49,7 @@ namespace Hangfire.MySql.JobQueue
                             "update JobQueue set FetchedAt = UTC_TIMESTAMP(), FetchToken = @fetchToken " +
                             "where (FetchedAt is null or FetchedAt < DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND)) " +
                             "   and Queue in @queues " +
+                            "ORDER BY FIELD(Queue, " + string.Join(",", queues.Select(q => "'" + q.Replace("'","''") + "'")) + "), JobId " +
                             "LIMIT 1;",
                             new
                             {
