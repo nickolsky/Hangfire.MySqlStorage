@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using Hangfire.Annotations;
 using Hangfire.Logging;
@@ -41,23 +43,29 @@ namespace Hangfire.MySql.JobQueue
                 
                 try
                 {
-                    using (new MySqlDistributedLock(_storage, "JobQueue", TimeSpan.FromSeconds(30)))
+                    var joinedQueues = string.Join(",", queues.Select(q => "'" + q.Replace("'", "''") + "'"));
+                    /*var resource = ("JobQueue:" + joinedQueues);
+                    if (resource.Length > 100)
+                        resource = resource.Substring(0, 100);
+
+                    using (new MySqlDistributedLock(_storage, resource, TimeSpan.FromSeconds(70)))*/
                     {
                         string token = Guid.NewGuid().ToString();
 
                         int nUpdated = connection.Execute(
-                            "update JobQueue set FetchedAt = UTC_TIMESTAMP(), FetchToken = @fetchToken " +
-                            "where (FetchedAt is null or FetchedAt < DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND)) " +
+                            "update JobQueue set FetchedAt = DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND), FetchToken = @fetchToken " +
+                            "where (FetchedAt is null or FetchedAt < UTC_TIMESTAMP()) " +
                             "   and Queue in @queues " +
-                            "ORDER BY FIELD(Queue, " + string.Join(",", queues.Select(q => "'" + q.Replace("'","''") + "'")) + "), JobId " +
+                            "ORDER BY FIELD(Queue, " + joinedQueues + "), JobId " +
                             "LIMIT 1;",
                             new
                             {
                                 queues = queues,
-                                timeout = _options.InvisibilityTimeout.Negate().TotalSeconds,
+                                timeout = 45, //_options.InvisibilityTimeout.Negate().TotalSeconds,
                                 fetchToken = token
-                            });
-
+                            },
+                            commandTimeout: 15);
+                        
                         if(nUpdated != 0)
                         {
                             fetchedJob =
@@ -69,8 +77,24 @@ namespace Hangfire.MySql.JobQueue
                                         new
                                         {
                                             fetchToken = token
-                                        })
+                                        },
+                                        commandTimeout: 15)
                                     .SingleOrDefault();
+
+                            if (fetchedJob != null)
+                            {
+                                nUpdated = connection.Execute(
+                                    "update JobQueue set FetchedAt = DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND), FetchToken = @fetchToken " +
+                                    "where FetchToken = @fetchToken;",
+                                    new
+                                    {
+                                        timeout = _options.InvisibilityTimeout.TotalSeconds,
+                                        fetchToken = token
+                                    },commandTimeout: 15);
+
+                                if (nUpdated == 0)
+                                    fetchedJob = null;
+                            }
                         }
                     }
                 }
@@ -97,6 +121,44 @@ namespace Hangfire.MySql.JobQueue
         {
             Logger.TraceFormat("Enqueue JobId={0} Queue={1}", jobId, queue);
             connection.Execute("insert into JobQueue (JobId, Queue) values (@jobId, @queue)", new {jobId, queue});
+        }
+    }
+
+    public static class Retry
+    {
+        public static void Do(
+            Action action,
+            TimeSpan retryInterval,
+            int retryCount = 3)
+        {
+            Do<object>(() =>
+            {
+                action();
+                return null;
+            }, retryInterval, retryCount);
+        }
+
+        public static T Do<T>(
+            Func<T> action,
+            TimeSpan retryInterval,
+            int retryCount = 3)
+        {
+            var exceptions = new List<Exception>();
+
+            for (int retry = 0; retry < retryCount; retry++)
+            {
+                try
+                {
+                    return action();
+                }
+                catch (Exception ex)
+                {
+                    exceptions.Add(ex);
+                    Task.Delay(retryInterval).Wait();
+                }
+            }
+
+            throw new AggregateException(exceptions);
         }
     }
 }
