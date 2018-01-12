@@ -52,7 +52,7 @@ namespace Hangfire.MySql.JobQueue
                     {
                         string token = Guid.NewGuid().ToString();
 
-                        int nUpdated = connection.Execute(
+                        int nUpdated = MySqlStorageConnection.AttemptActionReturnObject(() => connection.Execute(
                             "update JobQueue set FetchedAt = DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND), FetchToken = @fetchToken " +
                             "where (FetchedAt is null or FetchedAt < UTC_TIMESTAMP()) " +
                             "   and Queue in @queues " +
@@ -64,12 +64,12 @@ namespace Hangfire.MySql.JobQueue
                                 timeout = 45, //_options.InvisibilityTimeout.Negate().TotalSeconds,
                                 fetchToken = token
                             },
-                            commandTimeout: 15);
+                            commandTimeout: 15), 3);
                         
                         if(nUpdated != 0)
                         {
                             fetchedJob =
-                                connection
+                                MySqlStorageConnection.AttemptActionReturnObject(() => connection
                                     .Query<FetchedJob>(
                                         "select Id, JobId, Queue " +
                                         "from JobQueue " +
@@ -79,18 +79,18 @@ namespace Hangfire.MySql.JobQueue
                                             fetchToken = token
                                         },
                                         commandTimeout: 15)
-                                    .SingleOrDefault();
+                                    .SingleOrDefault(), 3);
 
                             if (fetchedJob != null)
                             {
-                                nUpdated = connection.Execute(
+                                nUpdated = MySqlStorageConnection.AttemptActionReturnObject(() => connection.Execute(
                                     "update JobQueue set FetchedAt = DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND), FetchToken = @fetchToken " +
                                     "where FetchToken = @fetchToken;",
                                     new
                                     {
                                         timeout = _options.InvisibilityTimeout.TotalSeconds,
                                         fetchToken = token
-                                    },commandTimeout: 15);
+                                    },commandTimeout: 15), 5);
 
                                 if (nUpdated == 0)
                                     fetchedJob = null;

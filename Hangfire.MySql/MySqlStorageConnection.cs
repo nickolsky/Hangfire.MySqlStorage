@@ -9,6 +9,7 @@ using Hangfire.Logging;
 using Hangfire.MySql.Entities;
 using Hangfire.Server;
 using Hangfire.Storage;
+using MySql.Data.MySqlClient;
 
 namespace Hangfire.MySql
 {
@@ -496,6 +497,41 @@ order by Id desc";
 
                 return result.Count != 0 ? result : null;
             });
+        }
+
+        private const int DB_DEADLOCK_RETRY_COUNT = 60;
+
+        public static T AttemptActionReturnObject<T>(Func<T> action, int? attempts = DB_DEADLOCK_RETRY_COUNT)
+        {
+            var attemptCount = 0;
+
+            do
+            {
+                attemptCount++;
+                try
+                {
+                    return action();
+                }
+                catch (MySqlException ex)
+                {
+                    if (attemptCount <= attempts)
+                    {
+                        switch (ex.Number)
+                        {
+                            case 1205: //(ER_LOCK_WAIT_TIMEOUT) Lock wait timeout exceeded
+                            case 1213: //(ER_LOCK_DEADLOCK) Deadlock found when trying to get lock
+                                Thread.Sleep(attemptCount * 3000);
+                                break;
+                            default:
+                                throw;
+                        }
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            } while (true);
         }
     }
 }

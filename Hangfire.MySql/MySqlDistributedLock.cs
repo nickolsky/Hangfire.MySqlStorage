@@ -49,7 +49,7 @@ namespace Hangfire.MySql
 
         private int AcquireLock(string resource, TimeSpan timeout)
         {
-            return
+            return MySqlStorageConnection.AttemptActionReturnObject(() =>
                 _connection
                     .Execute(
                         "INSERT INTO DistributedLock (Resource, CreatedAt) " +
@@ -58,13 +58,13 @@ namespace Hangfire.MySql
                         "  WHERE NOT EXISTS ( " +
                         "  		SELECT * FROM DistributedLock " +
                         "     	WHERE Resource = @resource " +
-                        "       AND CreatedAt > @expired)", 
+                        "       AND CreatedAt > @expired)",
                         new
                         {
                             resource,
-                            now = DateTime.UtcNow, 
+                            now = DateTime.UtcNow,
                             expired = DateTime.UtcNow.Add(timeout.Negate())
-                        });
+                        }));
         }
 
         public void Dispose()

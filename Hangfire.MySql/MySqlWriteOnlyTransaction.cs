@@ -342,14 +342,18 @@ where lst.Key = @key
 
         public override void Commit()
         {
-            _storage.UseTransaction(connection =>
+            MySqlStorageConnection.AttemptActionReturnObject(() =>
             {
-                connection.EnlistTransaction(Transaction.Current);
-
-                foreach (var command in _commandQueue)
+                _storage.UseTransaction(connection =>
                 {
-                    command(connection);
-                }
+                    connection.EnlistTransaction(Transaction.Current);
+
+                    foreach (var command in _commandQueue)
+                    {
+                        command(connection);
+                    }
+                });
+                return 0;
             });
         }
 
