@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using Hangfire.Common;
 using Hangfire.Logging;
@@ -245,7 +246,7 @@ namespace Hangfire.MySql
             {
                 connection.Execute(
                     "update Server set LastHeartbeat = @now where Id = @id",
-                    new { now = DateTime.UtcNow, id = serverId });
+                    new {now = DateTime.UtcNow, id = serverId});
             });
         }
 
@@ -256,11 +257,11 @@ namespace Hangfire.MySql
                 throw new ArgumentException("The `timeOut` value must be positive.", "timeOut");
             }
 
-            return
-                _storage.UseConnection(connection =>
-                    connection.Execute(
-                        "delete from Server where LastHeartbeat < @timeOutAt",
-                        new {timeOutAt = DateTime.UtcNow.Add(timeOut.Negate())}));
+            
+            return _storage.UseConnection(connection =>
+                connection.Execute(
+                    "delete from Server where LastHeartbeat < @timeOutAt",
+                    new { timeOutAt = DateTime.UtcNow.Add(timeOut.Negate()) }));
         }
 
         public override long GetSetCount(string key)
@@ -520,10 +521,20 @@ order by Id desc";
                         {
                             case 1205: //(ER_LOCK_WAIT_TIMEOUT) Lock wait timeout exceeded
                             case 1213: //(ER_LOCK_DEADLOCK) Deadlock found when trying to get lock
-                                Thread.Sleep(attemptCount * 3000);
+                                Task.Delay(Math.Min(attemptCount*1000, 3000)).Wait();
                                 break;
                             default:
-                                throw;
+                            {
+                                if (ex.Message?.ToLower().Contains("timeout") == true)
+                                {
+                                    Task.Delay(Math.Min(attemptCount*1000, 3000)).Wait();
+                                    break;
+                                }
+                                else
+                                {
+                                    throw;
+                                }
+                            }
                         }
                     }
                     else
@@ -533,5 +544,6 @@ order by Id desc";
                 }
             } while (true);
         }
+        
     }
 }

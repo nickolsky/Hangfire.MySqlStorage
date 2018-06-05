@@ -12,7 +12,6 @@ namespace Hangfire.MySql.JobQueue
         private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();
 
         private readonly MySqlStorage _storage;
-        private readonly IDbConnection _connection;
         private readonly int _id;
         private bool _removedFromQueue;
         private bool _requeued;
@@ -20,15 +19,12 @@ namespace Hangfire.MySql.JobQueue
 
         public MySqlFetchedJob(
             MySqlStorage storage, 
-            IDbConnection connection,
             FetchedJob fetchedJob)
         {
             if (storage == null) throw new ArgumentNullException("storage");
-            if (connection == null) throw new ArgumentNullException("connection");
             if (fetchedJob == null) throw new ArgumentNullException("fetchedJob");
 
             _storage = storage;
-            _connection = connection;
             _id = fetchedJob.Id;
             JobId = fetchedJob.JobId.ToString(CultureInfo.InvariantCulture);
             Queue = fetchedJob.Queue; 
@@ -44,8 +40,6 @@ namespace Hangfire.MySql.JobQueue
                 Requeue();
             }
 
-            _storage.ReleaseConnection(_connection);
-
             _disposed = true;
         }
 
@@ -54,13 +48,13 @@ namespace Hangfire.MySql.JobQueue
             Logger.TraceFormat("RemoveFromQueue JobId={0}", JobId);
 
             //todo: unit test
-            _connection.Execute(
+            _storage.UseConnection(connection => connection.Execute(
                 "delete from JobQueue " +
                 "where Id = @id",
                 new
                 {
                     id = _id
-                });
+                }));
 
             _removedFromQueue = true;
         }
@@ -70,13 +64,13 @@ namespace Hangfire.MySql.JobQueue
             Logger.TraceFormat("Requeue JobId={0}", JobId);
 
             //todo: unit test
-            _connection.Execute(
+            _storage.UseConnection(connection => connection.Execute(
                 "update JobQueue set FetchedAt = null " +
                 "where Id = @id",
                 new
                 {
                     id = _id
-                });
+                }));
             _requeued = true;
         }
 

@@ -39,10 +39,10 @@ namespace Hangfire.MySql.JobQueue
             do
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                connection = _storage.CreateAndOpenConnection();
-                
+
                 try
                 {
+                    connection = _storage.CreateAndOpenConnection();
                     var joinedQueues = string.Join(",", queues.Select(q => "'" + q.Replace("'", "''") + "'"));
                     /*var resource = ("JobQueue:" + joinedQueues);
                     if (resource.Length > 100)
@@ -65,8 +65,8 @@ namespace Hangfire.MySql.JobQueue
                                 fetchToken = token
                             },
                             commandTimeout: 15), 3);
-                        
-                        if(nUpdated != 0)
+
+                        if (nUpdated != 0)
                         {
                             fetchedJob =
                                 MySqlStorageConnection.AttemptActionReturnObject(() => connection
@@ -90,7 +90,7 @@ namespace Hangfire.MySql.JobQueue
                                     {
                                         timeout = _options.InvisibilityTimeout.TotalSeconds,
                                         fetchToken = token
-                                    },commandTimeout: 15), 5);
+                                    }, commandTimeout: 15), 5);
 
                                 if (nUpdated == 0)
                                     fetchedJob = null;
@@ -101,20 +101,21 @@ namespace Hangfire.MySql.JobQueue
                 catch (MySqlException ex)
                 {
                     Logger.ErrorException(ex.Message, ex);
-                    _storage.ReleaseConnection(connection);
                     throw;
+                }
+                finally
+                {
+                    _storage.ReleaseConnection(connection);
                 }
 
                 if (fetchedJob == null)
                 {
-                    _storage.ReleaseConnection(connection);
-
                     cancellationToken.WaitHandle.WaitOne(_options.QueuePollInterval);
                     cancellationToken.ThrowIfCancellationRequested();
                 }
             } while (fetchedJob == null);
 
-            return new MySqlFetchedJob(_storage, connection, fetchedJob);
+            return new MySqlFetchedJob(_storage, fetchedJob);
         }
 
         public void Enqueue(IDbConnection connection, string queue, string jobId)

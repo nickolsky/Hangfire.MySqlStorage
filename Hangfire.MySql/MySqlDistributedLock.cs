@@ -19,26 +19,22 @@ namespace Hangfire.MySql
         private const int DelayBetweenPasses = 100;
 
         public MySqlDistributedLock(MySqlStorage storage, string resource, TimeSpan timeout)
-            : this(storage.CreateAndOpenConnection(), resource, timeout)
+            : this(resource, timeout)
         {
             _storage = storage;
         }
 
-        private readonly IDbConnection _connection;
-
-        public MySqlDistributedLock(IDbConnection connection, string resource, TimeSpan timeout)
-            : this(connection, resource, timeout, new CancellationToken())
+        public MySqlDistributedLock(string resource, TimeSpan timeout)
+            : this(resource, timeout, new CancellationToken())
         {
         }
 
-        public MySqlDistributedLock(
-            IDbConnection connection, string resource, TimeSpan timeout, CancellationToken cancellationToken)
+        public MySqlDistributedLock(string resource, TimeSpan timeout, CancellationToken cancellationToken)
         {
             Logger.TraceFormat("MySqlDistributedLock resource={0}, timeout={1}", resource, timeout);
 
             _resource = resource;
             _timeout = timeout;
-            _connection = connection;
             _cancellationToken = cancellationToken;
             _start = DateTime.UtcNow;
         }
@@ -49,32 +45,33 @@ namespace Hangfire.MySql
 
         private int AcquireLock(string resource, TimeSpan timeout)
         {
+
             return MySqlStorageConnection.AttemptActionReturnObject(() =>
-                _connection
-                    .Execute(
-                        "INSERT INTO DistributedLock (Resource, CreatedAt) " +
-                        "  SELECT @resource, @now " +
-                        "  FROM dual " +
-                        "  WHERE NOT EXISTS ( " +
-                        "  		SELECT * FROM DistributedLock " +
-                        "     	WHERE Resource = @resource " +
-                        "       AND CreatedAt > @expired)",
-                        new
-                        {
-                            resource,
-                            now = DateTime.UtcNow,
-                            expired = DateTime.UtcNow.Add(timeout.Negate())
-                        }));
+
+                _storage.UseConnection(connection =>
+                    connection
+                        .Execute(
+                            "INSERT INTO DistributedLock (Resource, CreatedAt) " +
+                            "  SELECT @resource, @now " +
+                            "  FROM dual " +
+                            "  WHERE NOT EXISTS ( " +
+                            "  		SELECT * FROM DistributedLock " +
+                            "     	WHERE Resource = @resource " +
+                            "       AND CreatedAt > @expired)",
+                            new
+                            {
+                                resource,
+                                now = DateTime.UtcNow,
+                                expired = DateTime.UtcNow.Add(timeout.Negate())
+                            }))
+
+                );
         }
 
         public void Dispose()
         {
             Release();
 
-            if (_storage != null)
-            {
-                _storage.ReleaseConnection(_connection);
-            }
         }
 
         internal MySqlDistributedLock Acquire()
@@ -111,14 +108,15 @@ namespace Hangfire.MySql
         {
             Logger.TraceFormat("Release resource={0}", _resource);
 
-            _connection
+            _storage.UseConnection(connection =>
+                connection
                 .Execute(
                     "DELETE FROM DistributedLock  " +
                     "WHERE Resource = @resource",
                     new
                     {
                         resource = _resource
-                    });
+                    }));
         }
 
         public int CompareTo(object obj)
