@@ -17,6 +17,8 @@ namespace Hangfire.MySql.JobQueue
     {
         private static readonly ILog Logger = LogProvider.GetLogger(typeof(MySqlJobQueue));
 
+        private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(30, 30);
+
         private readonly MySqlStorage _storage;
         private readonly MySqlStorageOptions _options;
         public MySqlJobQueue(MySqlStorage storage, MySqlStorageOptions options)
@@ -43,7 +45,8 @@ namespace Hangfire.MySql.JobQueue
                 try
                 {
                     connection = _storage.CreateAndOpenConnection();
-                    var joinedQueues = string.Join(",", queues.Select(q => "'" + q.Replace("'", "''") + "'"));
+                    
+                    //var joinedQueues = string.Join(",", queues.Select(q => "'" + q.Replace("'", "''") + "'"));
                     /*var resource = ("JobQueue:" + joinedQueues);
                     if (resource.Length > 100)
                         resource = resource.Substring(0, 100);
@@ -52,19 +55,32 @@ namespace Hangfire.MySql.JobQueue
                     {
                         string token = Guid.NewGuid().ToString();
 
-                        int nUpdated = MySqlStorageConnection.AttemptActionReturnObject(() => connection.Execute(
-                            "update JobQueue set FetchedAt = DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND), FetchToken = @fetchToken " +
-                            "where (FetchedAt is null or FetchedAt < UTC_TIMESTAMP()) " +
-                            "   and Queue in @queues " +
-                            "ORDER BY FIELD(Queue, " + joinedQueues + "), JobId " +
-                            "LIMIT 1;",
-                            new
-                            {
-                                queues = queues,
-                                timeout = 45, //_options.InvisibilityTimeout.Negate().TotalSeconds,
-                                fetchToken = token
-                            },
-                            commandTimeout: 15), 3);
+                        int nUpdated;
+
+
+                        _semaphoreSlim.Wait(cancellationToken);
+
+                        try
+                        {
+                            nUpdated = MySqlStorageConnection.AttemptActionReturnObject(() => connection.Execute(
+                                "update JobQueue set FetchedAt = DATE_ADD(UTC_TIMESTAMP(), INTERVAL @timeout SECOND), FetchToken = @fetchToken " +
+                                "where (FetchedAt is null or FetchedAt < UTC_TIMESTAMP()) " +
+                                "   and Queue in @queues " +
+                                // "ORDER BY FIELD(Queue, " + joinedQueues + "), JobId " +
+                                "ORDER BY Priority DESC, JobId " +
+                                "LIMIT 1;",
+                                new
+                                {
+                                    queues = queues,
+                                    timeout = 45, //_options.InvisibilityTimeout.Negate().TotalSeconds,
+                                    fetchToken = token
+                                },
+                                commandTimeout: 15), 3);
+                        }
+                        finally
+                        {
+                            _semaphoreSlim.Release();
+                        }
 
                         if (nUpdated != 0)
                         {
