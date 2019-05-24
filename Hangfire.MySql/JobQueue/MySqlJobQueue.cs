@@ -17,7 +17,7 @@ namespace Hangfire.MySql.JobQueue
     {
         private static readonly ILog Logger = LogProvider.GetLogger(typeof(MySqlJobQueue));
 
-        private static SemaphoreSlim _semaphoreSlim = new SemaphoreSlim(30, 30);
+        private static Semaphore _semaphoreSlim = new Semaphore(30, 30);
 
         private readonly MySqlStorage _storage;
         private readonly MySqlStorageOptions _options;
@@ -57,8 +57,11 @@ namespace Hangfire.MySql.JobQueue
 
                         int nUpdated;
 
-
-                        _semaphoreSlim.Wait(cancellationToken);
+                        while (!_semaphoreSlim.WaitOne(TimeSpan.FromSeconds(5)))
+                        {
+                            cancellationToken.ThrowIfCancellationRequested();
+                        }
+                        //_semaphoreSlim.Wait(cancellationToken);
 
                         try
                         {
