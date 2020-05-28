@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Development\Repos\Hangfire.MySqlStorage" t="IncludeFlat">
+      <e p="Hangfire.MySql" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CountersAggregator.cs" t="Include" />
+        <e p="Entities" t="Include">
+          <e p="JobParameter.cs" t="Include" />
+          <e p="Server.cs" t="Include" />
+          <e p="ServerData.cs" t="Include" />
+          <e p="SqlHash.cs" t="Include" />
+          <e p="SqlJob.cs" t="Include" />
+          <e p="SqlState.cs" t="Include" />
+        </e>
+        <e p="ExpirationManager.cs" t="Include" />
+        <e p="Hangfire.MySql.csproj" t="IncludeRecursive" />
+        <e p="Install.sql" t="Include" />
+        <e p="JobQueue" t="Include">
+          <e p="EnqueuedAndFetchedCountDto.cs" t="Include" />
+          <e p="FetchedJob.cs" t="Include" />
+          <e p="IPersistentJobQueue.cs" t="Include" />
+          <e p="IPersistentJobQueueMonitoringApi.cs" t="Include" />
+          <e p="IPersistentJobQueueProvider.cs" t="Include" />
+          <e p="MySqlFetchedJob.cs" t="Include" />
+          <e p="MySqlJobQueue.cs" t="Include" />
+          <e p="MySqlJobQueueMonitoringApi.cs" t="Include" />
+          <e p="MySqlJobQueueProvider.cs" t="Include" />
+          <e p="PersistentJobQueueProviderCollection.cs" t="Include" />
+        </e>
+        <e p="Monitoring" t="Include">
+          <e p="MySqlMonitoringApi.cs" t="Include" />
+        </e>
+        <e p="MySqlDistributedLock.cs" t="Include" />
+        <e p="MySqlDistributedLockException.cs" t="Include" />
+        <e p="MySqlObjectsInstaller.cs" t="Include" />
+        <e p="MySqlStorage.cs" t="Include" />
+        <e p="MySqlStorageConnection.cs" t="Include" />
+        <e p="MySqlStorageOptions.cs" t="Include" />
+        <e p="MySqlWriteOnlyTransaction.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Hangfire.MySql.Tests" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="CountersAggregatorTests.cs" t="Include" />
+        <e p="ExpirationManagerTests.cs" t="Include" />
+        <e p="Hangfire.MySql.Tests.csproj" t="IncludeRecursive" />
+        <e p="JobQueue" t="Include">
+          <e p="MySqlFetchedJobTests.cs" t="Include" />
+          <e p="MySqlJobQueueMonitoringApiTests.cs" t="Include" />
+          <e p="MySqlJobQueueTests.cs" t="Include" />
+          <e p="PersistentJobQueueProviderCollectionTests.cs" t="Include" />
+        </e>
+        <e p="Monitoring" t="Include">
+          <e p="MySqlMonitoringApiTests.cs" t="Include" />
+        </e>
+        <e p="MySqlStorageConnectionTests.cs" t="Include" />
+        <e p="MySqlStorageTests.cs" t="Include" />
+        <e p="MySqlWriteOnlyTransactionTests.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="StorageOptionsTests.cs" t="Include" />
+        <e p="Utils" t="Include">
+          <e p="CleanDatabaseAttribute.cs" t="Include" />
+          <e p="ConnectionUtils.cs" t="Include" />
+          <e p="TestDatabaseFixture.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Hangfire.MySqlStorage.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive">
+        <e p="xunit.core.2.1.0\build\_desktop\xunit.execution.desktop.dll" t="Include" />
+        <e p="xunit.runner.visualstudio.2.1.0\build\_common\xunit.abstractions.dll" t="Include" />
+        <e p="xunit.runner.visualstudio.2.1.0\build\_common\xunit.runner.utility.desktop.dll" t="Include" />
+        <e p="xunit.runner.visualstudio.2.1.0\build\_common\xunit.runner.visualstudio.testadapter.dll" t="Include" />
+      </e>
+    </e>
+    <e p="C:\Users\nicko\.Rider2018.3\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\nicko\.Rider2018.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\nicko\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Hangfire.MySqlStorage.1729438491.00" t="ExcludeRecursive" />
+  </component>
+</project>
