@@ -1,199 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:upstream" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="f66be12c-66fc-4a54-ba65-ca32ab095bd4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySqlStorage.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySqlStorage.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/projectSettingsUpdater.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql.Tests/Hangfire.MySql.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql.Tests/Hangfire.MySql.Tests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql.Tests/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql.Tests/packages.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/CountersAggregator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/CountersAggregator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/Hangfire.MySql.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/Hangfire.MySql.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/FetchedJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/FetchedJob.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageOptions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlWriteOnlyTransaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlWriteOnlyTransaction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/packages.config" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1488829099970" expanded="false" signature="6:411" ph="..." />
-                <marker date="1488829099970" expanded="true" signature="437:7987" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="495:7985" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="990:1010" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="1099:2273" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="1354:1442" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="1522:1667" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="1684:1945" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="2028:2222" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="2109:2208" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="2340:2605" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="2654:2826" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="2897:3099" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="3160:3356" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="3399:4971" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="3513:4802" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="4069:4284" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="4137:4266" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="4427:4642" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="4495:4624" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="4835:4961" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="5030:5131" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="5191:5264" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="5336:5413" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="5498:5675" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="5761:5923" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="5812:5905" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="6053:6333" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="6173:6323" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="6416:6717" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="6802:6957" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="6852:6945" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7041:7345" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7115:7240" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7260:7335" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7405:7687" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7460:7532" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7754:7929" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7853:7919" ph="{...}" />
-                <marker date="1488829099970" expanded="true" signature="7959:7979" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
-              <folding>
-                <marker date="1548112059307" expanded="false" signature="6:287" ph="..." />
-                <marker date="1548112059307" expanded="true" signature="322:7151" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="379:6214" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="735:974" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="1064:5913" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="1465:5281" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="1707:1965" ph="/* var resource = (&quot;JobQueue:&quot; + joinedQueues); ... */" />
-                <marker date="1548112059307" expanded="true" signature="2174:2304" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="2399:3443" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="3112:3359" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="3475:3581" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="3625:5241" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="4134:4240" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="4414:5215" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="4861:5052" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="5323:5445" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="5469:5565" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="5606:5798" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="5996:6208" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="6245:7149" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="6377:6538" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="6416:6499" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="6666:7143" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="6790:7078" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="6824:6897" ph="{...}" />
-                <marker date="1548112059307" expanded="true" signature="6934:7064" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlFetchedJobTests.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-              <folding>
-                <marker date="1477605499970" expanded="false" signature="6:101" ph="..." />
-                <marker date="1477605499970" expanded="true" signature="142:2080" ph="{...}" />
-                <marker date="1477605499970" expanded="true" signature="219:2078" ph="{...}" />
-                <marker date="1477605499970" expanded="true" signature="547:887" ph="{...}" />
-                <marker date="1477605499970" expanded="true" signature="966:1194" ph="{...}" />
-                <marker date="1477605499970" expanded="true" signature="1276:1504" ph="{...}" />
-                <marker date="1477605499970" expanded="true" signature="1591:1825" ph="{...}" />
-                <marker date="1477605499970" expanded="true" signature="1900:2072" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-              <folding>
-                <marker date="1528236604575" expanded="false" signature="6:122" ph="..." />
-                <marker date="1528236604575" expanded="true" signature="157:2134" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="208:2132" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="587:949" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="980:1173" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="1077:1132" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="1212:1603" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="1503:1551" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="1634:2024" ph="{...}" />
-                <marker date="1528236604575" expanded="true" signature="1933:1981" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlWriteOnlyTransaction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/CountersAggregatorTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorageOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/ExpirationManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Monitoring/MySqlMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlJobQueueMonitoringApiTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlJobQueueTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/11BD515F-D2A0-4526-8509-D23726DE0F46/fe/b55f3c88/Int32.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C54024E7-81D5-4ACF-9AB6-08AB4D2BEC42/35/17d2bea9/Transaction.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Monitoring/MySqlMonitoringApiTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Utils/TestDatabaseFixture.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueueProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BF5C2D38-6763-499E-832C-362E480BB46A/f4/059d1c57/CoreStateMachine.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/MySqlWriteOnlyTransactionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueueMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/PersistentJobQueueProviderCollection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2F437520-6F59-47EA-9E90-68A4BF53D470/24/58849b2c/CommandDefinition.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/FetchedJob.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueueProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2F437520-6F59-47EA-9E90-68A4BF53D470/ec/001984c2/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BF5C2D38-6763-499E-832C-362E480BB46A/50/bb746b85/Worker.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/ExpirationManagerTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/b3/8ed60137/CancellationToken.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueueMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLockException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Entities/Server.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/CountersAggregator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlFetchedJobTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/MySqlStorageConnectionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2552" />
-    <option name="y" value="361" />
-    <option name="width" value="1936" />
-    <option name="height" value="1066" />
-  </component>
-  <component name="ProjectView">
-    <navigator currentView="SolutionExplorer" proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="FileSystemExplorer" />
-      <pane id="SolutionExplorer">
-        <option name="show-all-files" value="false" />
-      </pane>
-      <pane id="AssemblyExplorer" />
-    </panes>
+  <component name="ProjectId" id="1fudWzecFCJ3eV53CuM9Do2YzXn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -206,61 +122,69 @@
       <updated>1548111874261</updated>
       <workItem from="1548111877613" duration="2238000" />
       <workItem from="1550432828015" duration="1785000" />
+      <workItem from="1597071956219" duration="4255000" />
+      <workItem from="1597085961727" duration="3364000" />
+      <workItem from="1597146441144" duration="14806000" />
+      <workItem from="1597750759577" duration="4310000" />
+      <workItem from="1598283693453" duration="2987000" />
+      <workItem from="1598349011713" duration="1213000" />
+      <workItem from="1598534546013" duration="595000" />
+      <workItem from="1598719252244" duration="10101000" />
+      <workItem from="1599124476947" duration="595000" />
+      <workItem from="1599220126100" duration="1225000" />
+      <workItem from="1599507168359" duration="595000" />
+      <workItem from="1600804776147" duration="1627000" />
+      <workItem from="1600816025273" duration="2061000" />
+      <workItem from="1603245456389" duration="5000" />
+      <workItem from="1604509935892" duration="117000" />
+      <workItem from="1611179911464" duration="989000" />
+      <workItem from="1614815674023" duration="3623000" />
+      <workItem from="1618325364365" duration="1380000" />
     </task>
     <servers />
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4023000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="2552" y="361" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3379531" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Performance Profiler" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="NuGet" order="7" />
-      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Unit Tests" order="11" />
-      <window_info anchor="bottom" id="Regex Tester" order="12" />
-      <window_info anchor="bottom" id="Terminal" order="13" />
-      <window_info anchor="bottom" id="Event Log" order="14" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Build" order="15" visible="true" weight="0.32972136" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Errors In Solution" order="3" />
-      <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="right" id="Unit Tests Coverage" order="5" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="958" y="438" width="645" height="534" key="find.popup" timestamp="1614816294508">
+      <screen x="0" y="0" width="2560" height="1409" />
+    </state>
+    <state x="958" y="438" width="645" height="534" key="find.popup/0.0.2560.1409/3840.1072.1536.834/-3840.0.2560.1409@0.0.2560.1409" timestamp="1614816294508" />
+    <state x="958" y="438" width="645" height="534" key="find.popup/3840.1081.1920.1034/0.0.2560.1409/-1920.1080.1920.1050@0.0.2560.1409" timestamp="1611180043535" />
+    <state x="-2897" y="317" width="672" height="678" key="search.everywhere.popup" timestamp="1614816460366">
+      <screen x="-3840" y="0" width="2560" height="1409" />
+    </state>
+    <state x="-2897" y="317" width="672" height="678" key="search.everywhere.popup/0.0.2560.1409/3840.1072.1536.834/-3840.0.2560.1409@-3840.0.2560.1409" timestamp="1614816460366" />
+    <state x="943" y="317" width="672" height="678" key="search.everywhere.popup/3840.1081.1920.1034/0.0.2560.1409/-1920.1080.1920.1050@0.0.2560.1409" timestamp="1611180045731" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -270,126 +194,5 @@
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1488829099970" expanded="false" signature="6:411" ph="..." />
-            <marker date="1488829099970" expanded="true" signature="437:7987" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="495:7985" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="990:1010" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="1099:2273" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="1354:1442" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="1522:1667" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="1684:1945" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="2028:2222" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="2109:2208" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="2340:2605" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="2654:2826" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="2897:3099" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="3160:3356" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="3399:4971" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="3513:4802" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="4069:4284" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="4137:4266" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="4427:4642" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="4495:4624" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="4835:4961" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="5030:5131" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="5191:5264" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="5336:5413" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="5498:5675" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="5761:5923" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="5812:5905" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="6053:6333" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="6173:6323" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="6416:6717" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="6802:6957" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="6852:6945" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7041:7345" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7115:7240" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7260:7335" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7405:7687" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7460:7532" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7754:7929" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7853:7919" ph="{...}" />
-            <marker date="1488829099970" expanded="true" signature="7959:7979" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlFetchedJobTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-          <folding>
-            <marker date="1477605499970" expanded="false" signature="6:101" ph="..." />
-            <marker date="1477605499970" expanded="true" signature="142:2080" ph="{...}" />
-            <marker date="1477605499970" expanded="true" signature="219:2078" ph="{...}" />
-            <marker date="1477605499970" expanded="true" signature="547:887" ph="{...}" />
-            <marker date="1477605499970" expanded="true" signature="966:1194" ph="{...}" />
-            <marker date="1477605499970" expanded="true" signature="1276:1504" ph="{...}" />
-            <marker date="1477605499970" expanded="true" signature="1591:1825" ph="{...}" />
-            <marker date="1477605499970" expanded="true" signature="1900:2072" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="19" column="15" selection-start-line="19" selection-start-column="15" selection-end-line="19" selection-end-column="15" />
-          <folding>
-            <marker date="1528236604575" expanded="false" signature="6:122" ph="..." />
-            <marker date="1528236604575" expanded="true" signature="157:2134" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="208:2132" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="587:949" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="980:1173" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="1077:1132" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="1212:1603" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="1503:1551" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="1634:2024" ph="{...}" />
-            <marker date="1528236604575" expanded="true" signature="1933:1981" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
-          <folding>
-            <marker date="1548112059307" expanded="false" signature="6:287" ph="..." />
-            <marker date="1548112059307" expanded="true" signature="322:7151" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="379:6214" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="735:974" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="1064:5913" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="1465:5281" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="1707:1965" ph="/* var resource = (&quot;JobQueue:&quot; + joinedQueues); ... */" />
-            <marker date="1548112059307" expanded="true" signature="2174:2304" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="2399:3443" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="3112:3359" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="3475:3581" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="3625:5241" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="4134:4240" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="4414:5215" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="4861:5052" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="5323:5445" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="5469:5565" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="5606:5798" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="5996:6208" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="6245:7149" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="6377:6538" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="6416:6499" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="6666:7143" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="6790:7078" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="6824:6897" ph="{...}" />
-            <marker date="1548112059307" expanded="true" signature="6934:7064" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>

@@ -32,7 +32,7 @@ namespace Hangfire.MySql
 
         public override IDisposable AcquireDistributedLock(string resource, TimeSpan timeout)
         {
-            return new MySqlDistributedLock(_storage, resource, timeout).Acquire();
+            return _storage.Options.AcquireLock(_storage, resource, timeout, new CancellationToken());
         }
 
         public override string CreateExpiredJob(Job job, IDictionary<string, string> parameters, DateTime createdAt, TimeSpan expireIn)
@@ -287,9 +287,8 @@ from `Set` s
     inner join (
 	    select tmp.Id, @rownum := @rownum + 1 AS `rank`
 	    from `Set` tmp,
-            (select @rownum := 0) r ) ranked on ranked.Id = s.Id
-where s.`Key` = @key 
-    and  ranked.`rank` between @startingFrom and @endingAt",
+            (select @rownum := 0) r where tmp.`Key` = @key) ranked on ranked.Id = s.Id
+where ranked.`rank` between @startingFrom and @endingAt",
                         new {key = key, startingFrom = startingFrom + 1, endingAt = endingAt + 1})
                     .ToList());
         }
@@ -423,10 +422,10 @@ from List lst
     inner join (
         select tmp.Id, @rownum := @rownum + 1 AS `rank`
 	    from `List` tmp,
-            (select @rownum := -1) r 
+            (select @rownum := -1) r
+            where tmp.`Key` = @key 
         ) ranked on ranked.Id = lst.Id
-where lst.`Key` = @key 
-    and  ranked.`rank` between @startingFrom and @endingAt
+where ranked.`rank` between @startingFrom and @endingAt
 order by lst.Id desc";
 
             return

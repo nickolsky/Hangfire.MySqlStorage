@@ -83,8 +83,9 @@
         <e p="xunit.runner.visualstudio.2.1.0\build\_common\xunit.runner.visualstudio.testadapter.dll" t="Include" />
       </e>
     </e>
-    <e p="C:\Users\nicko\.Rider2018.3\config\scratches" t="IncludeRecursive" />
-    <e p="C:\Users\nicko\.Rider2018.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\nicko\.Rider2018.3\system\resharper-host\local\Transient\ReSharperHost\v183\SolutionCaches\_Hangfire.MySqlStorage.1729438491.00" t="ExcludeRecursive" />
+    <e p="C:\Users\nicko\AppData\local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\nicko\AppData\local\JetBrains\Rider2020.3\resharper-host\local\Transient\Rider\v203\SolutionCaches\_Hangfire.MySqlStorage.1729438491.00" t="ExcludeRecursive" />
+    <e p="C:\Users\nicko\AppData\Roaming\JetBrains\Rider2020.3\consoles\db" t="IncludeRecursive" />
+    <e p="C:\Users\nicko\AppData\Roaming\JetBrains\Rider2020.3\extensions" t="IncludeRecursive" />
   </component>
 </project>

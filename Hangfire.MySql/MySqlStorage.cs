@@ -26,6 +26,8 @@ namespace Hangfire.MySql
 
         public virtual PersistentJobQueueProviderCollection QueueProviders { get; private set; }
 
+        internal MySqlStorageOptions Options => _options;
+
         public MySqlStorage(string nameOrConnectionString)
             : this(nameOrConnectionString, new MySqlStorageOptions())
         {
@@ -51,6 +53,11 @@ namespace Hangfire.MySql
                         "Could not find connection string with name '{0}' in application config file",
                         nameOrConnectionString));
             }
+
+            /*if (!_connectionString.Contains("Use Affected Rows"))
+            {
+                _connectionString = _connectionString.TrimEnd(' ', ';') + ";Use Affected Rows=true";
+            }*/
             _options = options;
 
             if (options.PrepareSchemaIfNecessary)
@@ -187,7 +194,7 @@ namespace Hangfire.MySql
                 : new TransactionScope();
         }
 
-        internal void UseConnection([InstantHandle] Action<MySqlConnection> action)
+        public  void UseConnection([InstantHandle] Action<MySqlConnection> action)
         {
             UseConnection(connection =>
             {
@@ -196,7 +203,7 @@ namespace Hangfire.MySql
             });
         }
 
-        internal T UseConnection<T>([InstantHandle] Func<MySqlConnection, T> func)
+        public T UseConnection<T>([InstantHandle] Func<MySqlConnection, T> func)
         {
             MySqlConnection connection = null;
 
@@ -211,7 +218,7 @@ namespace Hangfire.MySql
             }
         }
 
-        internal MySqlConnection CreateAndOpenConnection()
+        public MySqlConnection CreateAndOpenConnection()
         {
             if (_existingConnection != null)
             {
@@ -223,8 +230,17 @@ namespace Hangfire.MySql
             
             return connection;
         }
+        
+        public MySqlConnection CreateAndOpenNewConnection()
+        {
+            var connection = new MySqlConnection(_connectionString);
+            connection.Open();
+            
+            return connection;
+        }
 
-        internal void ReleaseConnection(IDbConnection connection)
+
+        public void ReleaseConnection(IDbConnection connection)
         {
             if (connection != null && !ReferenceEquals(connection, _existingConnection))
             {

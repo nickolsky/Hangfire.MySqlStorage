@@ -18,8 +18,8 @@ namespace Hangfire.MySql
 
         private const int DelayBetweenPasses = 100;
 
-        public MySqlDistributedLock(MySqlStorage storage, string resource, TimeSpan timeout)
-            : this(resource, timeout)
+        public MySqlDistributedLock(MySqlStorage storage, string resource, TimeSpan timeout, CancellationToken cancellationToken)
+            : this(resource, timeout, cancellationToken)
         {
             _storage = storage;
         }
@@ -74,7 +74,7 @@ namespace Hangfire.MySql
 
         }
 
-        internal MySqlDistributedLock Acquire()
+        public MySqlDistributedLock Acquire()
         {
             Logger.TraceFormat("Acquire resource={0}, timeout={1}", _resource, _timeout);
 

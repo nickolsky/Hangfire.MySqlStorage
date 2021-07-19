@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Transactions;
 
 namespace Hangfire.MySql
@@ -17,6 +18,7 @@ namespace Hangfire.MySql
             DashboardJobListLimit = 50000;
             TransactionTimeout = TimeSpan.FromMinutes(1);
             InvisibilityTimeout = TimeSpan.FromMinutes(30);
+            AcquireLock = (storage, resource, timeout, cancellationToken) => new MySqlDistributedLock(storage, resource, timeout, cancellationToken).Acquire();
         }
 
         public IsolationLevel? TransactionIsolationLevel { get; set; }
@@ -52,5 +54,8 @@ namespace Hangfire.MySql
         public TimeSpan TransactionTimeout { get; set; }
         [Obsolete("Does not make sense anymore. Background jobs re-queued instantly even after ungraceful shutdown now. Will be removed in 2.0.0.")]
         public TimeSpan InvisibilityTimeout { get; set; }
+
+        public Func<MySqlStorage, string, TimeSpan, CancellationToken, IDisposable> AcquireLock { get; set; }
+        
     }
 }
