@@ -17,6 +17,9 @@ namespace Hangfire.MySql
         private readonly CancellationToken _cancellationToken;
 
         private const int DelayBetweenPasses = 100;
+        private const string LOCK_SCHEDULE_POLLER = "locks:schedulepoller";
+        private const string LOCK_RECURRING_JOBS = "recurring-jobs:lock";
+
 
         public MySqlDistributedLock(MySqlStorage storage, string resource, TimeSpan timeout, CancellationToken cancellationToken)
             : this(resource, timeout, cancellationToken)
@@ -46,6 +49,9 @@ namespace Hangfire.MySql
         private int AcquireLock(string resource, TimeSpan timeout)
         {
 
+            if ((resource == LOCK_SCHEDULE_POLLER || resource == LOCK_RECURRING_JOBS) && MySqlStorageConnection.UseCustomScheduler)
+                return 1;
+            
             return MySqlStorageConnection.AttemptActionReturnObject(() =>
 
                 _storage.UseConnection(connection =>
@@ -107,6 +113,10 @@ namespace Hangfire.MySql
         internal void Release()
         {
             Logger.TraceFormat("Release resource={0}", _resource);
+            
+            if ((_resource == LOCK_SCHEDULE_POLLER || _resource == LOCK_RECURRING_JOBS) && MySqlStorageConnection.UseCustomScheduler)
+                return;
+
 
             _storage.UseConnection(connection =>
                 connection

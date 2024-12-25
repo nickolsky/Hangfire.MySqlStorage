@@ -226,6 +226,17 @@ namespace Hangfire.MySql
             }
 
             var connection = new MySqlConnection(_connectionString);
+            connection.StateChange += (sender, args) =>
+            {
+                if (args.CurrentState == ConnectionState.Open)
+                {
+                    var senderConnection = (MySqlConnection) sender;
+                    using (MySqlCommand charsetCommand = new MySqlCommand("SET character_set_results=utf8mb4", senderConnection))
+                    {
+                        charsetCommand.ExecuteNonQuery();
+                    }
+                }
+            };
             connection.Open();
             
             return connection;
@@ -234,6 +245,17 @@ namespace Hangfire.MySql
         public MySqlConnection CreateAndOpenNewConnection()
         {
             var connection = new MySqlConnection(_connectionString);
+            connection.StateChange += (sender, args) =>
+            {
+                if (args.CurrentState == ConnectionState.Open)
+                {
+                    var senderConnection = (MySqlConnection) sender;
+                    using (MySqlCommand charsetCommand = new MySqlCommand("SET character_set_results=utf8mb4", senderConnection))
+                    {
+                        charsetCommand.ExecuteNonQuery();
+                    }
+                }
+            };
             connection.Open();
             
             return connection;

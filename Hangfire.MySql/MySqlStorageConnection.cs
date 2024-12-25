@@ -19,6 +19,9 @@ namespace Hangfire.MySql
         private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();
 
         private readonly MySqlStorage _storage;
+
+        public static bool UseCustomScheduler { get; set; }  = false;
+
         public MySqlStorageConnection(MySqlStorage storage)
         {
             if (storage == null) throw new ArgumentNullException("storage");
@@ -297,6 +300,14 @@ where ranked.`rank` between @startingFrom and @endingAt",
         {
             if (key == null) throw new ArgumentNullException("key");
 
+            if (UseCustomScheduler)
+            {
+                if (key == "recurring-jobs")
+                    return new HashSet<string>();
+                else if (key == "recurring-jobs2")
+                    key = "recurring-jobs";
+            }
+
             return
                 _storage.UseConnection(connection =>
                 {
@@ -308,22 +319,39 @@ where ranked.`rank` between @startingFrom and @endingAt",
                 });
         }
 
-        public override string GetFirstByLowestScoreFromSet(string key, double fromScore, double toScore)
+        public IEnumerable<string> GetFirstByLowestScoreFromSet(string key, double fromScore, double toScore, int count)
         {
             if (key == null) throw new ArgumentNullException("key");
+            if (UseCustomScheduler)
+            {
+                if (key == "schedule")
+                    return new string[] { };
+                else if (key == "schedule2")
+                    key = "schedule";
+                
+                if (key == "recurring-jobs")
+                    return new string[] { };
+                else if (key == "recurring-jobs2")
+                    key = "recurring-jobs";
+            }
+
             if (toScore < fromScore) 
                 throw new ArgumentException("The `toScore` value must be higher or equal to the `fromScore` value.");
 
             return
                 _storage.UseConnection(connection =>
                     connection.Query<string>(
-                        "select Value " +
-                        "from `Set` " +
-                        "where `Key` = @key and Score between @from and @to " +
-                        "order by Score " +
-                        "limit 1",
-                        new {key, from = fromScore, to = toScore})
-                        .SingleOrDefault());
+                            "select Value " +
+                            "from `Set` " +
+                            "where `Key` = @key and Score between @from and @to " +
+                            "order by Score " +
+                            "limit " + count,
+                            new {key, from = fromScore, to = toScore}));
+        }
+
+        public override string GetFirstByLowestScoreFromSet(string key, double fromScore, double toScore)
+        {
+            return GetFirstByLowestScoreFromSet(key, fromScore, toScore, 1).SingleOrDefault();
         }
 
         public override long GetCounter(string key)
@@ -518,8 +546,14 @@ order by Id desc";
                     {
                         switch (ex.Number)
                         {
+                            case 1040: //too many connections
                             case 1205: //(ER_LOCK_WAIT_TIMEOUT) Lock wait timeout exceeded
                             case 1213: //(ER_LOCK_DEADLOCK) Deadlock found when trying to get lock
+                            case 1614: //transaction rolled back
+                            case 2003: //cannot connect
+                            case 2006: //server gone away
+                            case 2013: //lost connection during query
+                            case 2014: //commands out of sync
                                 Task.Delay(Math.Min(attemptCount*1000, 3000)).Wait();
                                 break;
                             default:

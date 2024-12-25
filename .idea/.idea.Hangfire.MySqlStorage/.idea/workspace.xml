@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -25,24 +28,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f66be12c-66fc-4a54-ba65-ca32ab095bd4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/riderModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/aws.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql.Tests/Hangfire.MySql.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql.Tests/Hangfire.MySql.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql.Tests/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql.Tests/packages.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/CountersAggregator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/CountersAggregator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/Hangfire.MySql.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/Hangfire.MySql.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/FetchedJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/FetchedJob.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Hangfire.MySqlStorage/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageOptions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageOptions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/MySqlWriteOnlyTransaction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/MySqlWriteOnlyTransaction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Hangfire.MySql/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/Hangfire.MySql/packages.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,63 +47,75 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlWriteOnlyTransaction.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/CountersAggregatorTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorageOptions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/ExpirationManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Monitoring/MySqlMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/ExpirationManagerTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlFetchedJobTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlJobQueueMonitoringApiTests.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlJobQueueTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/11BD515F-D2A0-4526-8509-D23726DE0F46/fe/b55f3c88/Int32.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/C54024E7-81D5-4ACF-9AB6-08AB4D2BEC42/35/17d2bea9/Transaction.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Monitoring/MySqlMonitoringApiTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueue.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Utils/TestDatabaseFixture.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueueProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BF5C2D38-6763-499E-832C-362E480BB46A/f4/059d1c57/CoreStateMachine.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/MySqlWriteOnlyTransactionTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueueMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/PersistentJobQueueProviderCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2F437520-6F59-47EA-9E90-68A4BF53D470/24/58849b2c/CommandDefinition.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/FetchedJob.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueueProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2F437520-6F59-47EA-9E90-68A4BF53D470/ec/001984c2/SqlMapper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/BF5C2D38-6763-499E-832C-362E480BB46A/50/bb746b85/Worker.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/ExpirationManagerTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/b3/8ed60137/CancellationToken.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueueMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLockException.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Entities/Server.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/CountersAggregator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/JobQueue/MySqlFetchedJobTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/MySqlStorageConnectionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/MySqlWriteOnlyTransactionTests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql.Tests/Utils/TestDatabaseFixture.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/CountersAggregator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Entities/Server.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/ExpirationManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/FetchedJob.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueueMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/IPersistentJobQueueProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlFetchedJob.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueue.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueueMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/MySqlJobQueueProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/JobQueue/PersistentJobQueueProviderCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Monitoring/MySqlMonitoringApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLockException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlStorageOptions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/MySqlWriteOnlyTransaction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Hangfire.MySql/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="IdeDocumentHistory">
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Hangfire.MySql/MySqlStorageConnection.cs" />
+      <option value="$PROJECT_DIR$/Hangfire.MySql/MySqlDistributedLock.cs" />
+    </changedPaths>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectId" id="1fudWzecFCJ3eV53CuM9Do2YzXn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
-    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\nicko\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
+      "C:\\Users\\nicko\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
+      "C:\\Users\\nicko\\AppData\\Local\\Symbols\\src"
+    ]
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
@@ -140,12 +147,20 @@
       <workItem from="1611179911464" duration="989000" />
       <workItem from="1614815674023" duration="3623000" />
       <workItem from="1618325364365" duration="1380000" />
+      <workItem from="1636472968042" duration="7943000" />
+      <workItem from="1636554104490" duration="30000" />
+      <workItem from="1636580404271" duration="5489000" />
+      <workItem from="1636720947352" duration="594000" />
+      <workItem from="1636967265616" duration="148000" />
+      <workItem from="1661474771642" duration="1381000" />
+      <workItem from="1699362152916" duration="1234000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.History.Properties">
@@ -168,22 +183,9 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="958" y="438" width="645" height="534" key="find.popup" timestamp="1614816294508">
-      <screen x="0" y="0" width="2560" height="1409" />
-    </state>
-    <state x="958" y="438" width="645" height="534" key="find.popup/0.0.2560.1409/3840.1072.1536.834/-3840.0.2560.1409@0.0.2560.1409" timestamp="1614816294508" />
-    <state x="958" y="438" width="645" height="534" key="find.popup/3840.1081.1920.1034/0.0.2560.1409/-1920.1080.1920.1050@0.0.2560.1409" timestamp="1611180043535" />
-    <state x="-2897" y="317" width="672" height="678" key="search.everywhere.popup" timestamp="1614816460366">
-      <screen x="-3840" y="0" width="2560" height="1409" />
-    </state>
-    <state x="-2897" y="317" width="672" height="678" key="search.everywhere.popup/0.0.2560.1409/3840.1072.1536.834/-3840.0.2560.1409@-3840.0.2560.1409" timestamp="1614816460366" />
-    <state x="943" y="317" width="672" height="678" key="search.everywhere.popup/3840.1081.1920.1034/0.0.2560.1409/-1920.1080.1920.1050@0.0.2560.1409" timestamp="1611180045731" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
