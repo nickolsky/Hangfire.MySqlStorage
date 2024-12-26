@@ -24,27 +24,35 @@ namespace Hangfire.MySql
             _storageOptions = storageOptions;
         }
 
+        private static object _lockCounter = new object();
         public void Execute(CancellationToken cancellationToken)
         {
             Logger.DebugFormat($"Aggregating records in '{_storageOptions.TablesPrefix}Counter' table...");
 
             int removedCount = 0;
 
-            do
-            {
-                _storage.UseConnection(connection =>
-                {
-                    removedCount = connection.Execute(
-                        GetAggregationQuery(),
-                        new { now = DateTime.UtcNow, count = NumberOfRecordsInSinglePass });
-                });
 
-                if (removedCount >= NumberOfRecordsInSinglePass)
+            lock (_lockCounter)
+            {
+                do
                 {
-                    cancellationToken.WaitHandle.WaitOne(DelayBetweenPasses);
-                    cancellationToken.ThrowIfCancellationRequested();
-                }
-            } while (removedCount >= NumberOfRecordsInSinglePass);
+                    using (_storage.Options.AcquireLock(_storage, "LockCounter", TimeSpan.FromMinutes(5), new CancellationToken()))
+                    {
+                        _storage.UseConnection(connection =>
+                        {
+                            removedCount = connection.Execute(
+                                GetAggregationQuery(),
+                                new {now = DateTime.UtcNow, count = NumberOfRecordsInSinglePass});
+                        });
+                    }
+
+                    if (removedCount >= NumberOfRecordsInSinglePass)
+                    {
+                        cancellationToken.WaitHandle.WaitOne(DelayBetweenPasses);
+                        cancellationToken.ThrowIfCancellationRequested();
+                    }
+                } while (removedCount >= NumberOfRecordsInSinglePass);
+            }
 
             cancellationToken.WaitHandle.WaitOne(_storageOptions.CountersAggregateInterval);
         }

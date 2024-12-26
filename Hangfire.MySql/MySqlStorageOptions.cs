@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Transactions;
 using System.Data;
 
 namespace Hangfire.MySql
@@ -20,6 +22,7 @@ namespace Hangfire.MySql
             InvisibilityTimeout = TimeSpan.FromMinutes(30);
 
             TablesPrefix = DefaultTablesPrefix;
+            AcquireLock = (storage, resource, timeout, cancellationToken) => new MySqlDistributedLock(storage, resource, timeout, cancellationToken).Acquire();
         }
 
         public System.Transactions.IsolationLevel? TransactionIsolationLevel { get; set; }
@@ -57,5 +60,8 @@ namespace Hangfire.MySql
         public TimeSpan InvisibilityTimeout { get; set; }
 
         public string TablesPrefix { get; set; }
+
+        public Func<MySqlStorage, string, TimeSpan, CancellationToken, IDisposable> AcquireLock { get; set; }
+        
     }
 }

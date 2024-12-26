@@ -360,7 +360,7 @@ $@"select * from (
   left join `{_storageOptions.TablesPrefix}State` s on j.StateId = s.Id
   where j.StateName = @stateName
   order by j.Id desc
-) as j where j.rank between @start and @end ";
+) as j where j.`rank` between @start and @end ";
 
             var jobs = 
                 connection.Query<SqlJob>(

@@ -18,6 +18,8 @@ namespace Hangfire.MySql
         private readonly CancellationToken _cancellationToken;
 
         private const int DelayBetweenPasses = 100;
+        private const string LOCK_SCHEDULE_POLLER = "locks:schedulepoller";
+        private const string LOCK_RECURRING_JOBS = "recurring-jobs:lock";
 
         public MySqlDistributedLock(MySqlStorage storage, string resource, TimeSpan timeout, MySqlStorageOptions storageOptions)
             : this(storage.CreateAndOpenConnection(), resource, timeout, storageOptions)
@@ -51,8 +53,13 @@ namespace Hangfire.MySql
 
         private int AcquireLock(string resource, TimeSpan timeout)
         {
-            return
-                _connection
+            if ((resource == LOCK_SCHEDULE_POLLER || resource == LOCK_RECURRING_JOBS) && MySqlStorageConnection.UseCustomScheduler)
+                return 1;
+
+            return MySqlStorageConnection.AttemptActionReturnObject(() =>
+
+                _storage.UseConnection(connection =>
+                    connection
                     .Execute(
                         "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; " +
                         $"INSERT INTO `{_storageOptions.TablesPrefix}DistributedLock` (Resource, CreatedAt) " +
@@ -67,7 +74,8 @@ namespace Hangfire.MySql
                             resource,
                             now = DateTime.UtcNow, 
                             expired = DateTime.UtcNow.Add(timeout.Negate())
-                        });
+                        }))
+            );
         }
 
         public void Dispose()
@@ -80,7 +88,7 @@ namespace Hangfire.MySql
             }
         }
 
-        internal MySqlDistributedLock Acquire()
+        public MySqlDistributedLock Acquire()
         {
             Logger.TraceFormat("Acquire resource={0}, timeout={1}", _resource, _timeout);
 
@@ -113,15 +121,20 @@ namespace Hangfire.MySql
         internal void Release()
         {
             Logger.TraceFormat("Release resource={0}", _resource);
+            
+            if ((_resource == LOCK_SCHEDULE_POLLER || _resource == LOCK_RECURRING_JOBS) && MySqlStorageConnection.UseCustomScheduler)
+                return;
 
-            _connection
+
+            _storage.UseConnection(connection =>
+                connection
                 .Execute(
                     $"DELETE FROM `{_storageOptions.TablesPrefix}DistributedLock`  " +
                     "WHERE Resource = @resource",
                     new
                     {
                         resource = _resource
-                    });
+                    }));
         }
 
         public int CompareTo(object obj)

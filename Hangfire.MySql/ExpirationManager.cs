@@ -54,7 +54,7 @@ namespace Hangfire.MySql
 
                             using (
                                 new MySqlDistributedLock(
-                                    connection,
+                                    connection, 
                                     DistributedLockKey,
                                     DefaultLockTimeout,
                                     _storageOptions,

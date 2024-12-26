@@ -51,7 +51,7 @@ select r.JobId from (
   where jq.Queue = @queue
   order by jq.Id
 ) as r
-where r.rank between @start and @end;";
+where r.`rank` between @start and @end;";
 
             return _storage.UseConnection(connection =>
                 connection.Query<int>(

@@ -43,6 +43,12 @@ namespace Hangfire.MySql
             }
             _storageOptions = storageOptions;
 
+            /*if (!_connectionString.Contains("Use Affected Rows"))
+            {
+                _connectionString = _connectionString.TrimEnd(' ', ';') + ";Use Affected Rows=true";
+            }*/
+            _options = options;
+
             if (storageOptions.PrepareSchemaIfNecessary)
             {
                 using (var connection = CreateAndOpenConnection())
@@ -189,7 +195,7 @@ namespace Hangfire.MySql
             }
         }
 
-        internal void UseConnection([InstantHandle] Action<MySqlConnection> action)
+        public  void UseConnection([InstantHandle] Action<MySqlConnection> action)
         {
             UseConnection(connection =>
             {
@@ -198,7 +204,7 @@ namespace Hangfire.MySql
             });
         }
 
-        internal T UseConnection<T>([InstantHandle] Func<MySqlConnection, T> func)
+        public T UseConnection<T>([InstantHandle] Func<MySqlConnection, T> func)
         {
             MySqlConnection connection = null;
 
@@ -213,7 +219,7 @@ namespace Hangfire.MySql
             }
         }
 
-        internal MySqlConnection CreateAndOpenConnection()
+        public MySqlConnection CreateAndOpenConnection()
         {
             if (_existingConnection != null)
             {
@@ -221,12 +227,43 @@ namespace Hangfire.MySql
             }
 
             var connection = new MySqlConnection(_connectionString);
+            connection.StateChange += (sender, args) =>
+            {
+                if (args.CurrentState == ConnectionState.Open)
+                {
+                    var senderConnection = (MySqlConnection) sender;
+                    using (MySqlCommand charsetCommand = new MySqlCommand("SET character_set_results=utf8mb4", senderConnection))
+                    {
+                        charsetCommand.ExecuteNonQuery();
+                    }
+                }
+            };
             connection.Open();
 
             return connection;
         }
+        
+        public MySqlConnection CreateAndOpenNewConnection()
+        {
+            var connection = new MySqlConnection(_connectionString);
+            connection.StateChange += (sender, args) =>
+            {
+                if (args.CurrentState == ConnectionState.Open)
+                {
+                    var senderConnection = (MySqlConnection) sender;
+                    using (MySqlCommand charsetCommand = new MySqlCommand("SET character_set_results=utf8mb4", senderConnection))
+                    {
+                        charsetCommand.ExecuteNonQuery();
+                    }
+                }
+            };
+            connection.Open();
+            
+            return connection;
+        }
 
-        internal void ReleaseConnection(IDbConnection connection)
+
+        public void ReleaseConnection(IDbConnection connection)
         {
             if (connection != null && !ReferenceEquals(connection, _existingConnection))
             {

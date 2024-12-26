@@ -18,6 +18,7 @@ namespace Hangfire.MySql
 
         private readonly MySqlStorage _storage;
         private readonly MySqlStorageOptions _storageOptions;
+        public static bool UseCustomScheduler { get; set; }  = false;
 
         public MySqlStorageConnection(MySqlStorage storage, MySqlStorageOptions storageOptions)
         {
@@ -33,7 +34,7 @@ namespace Hangfire.MySql
 
         public override IDisposable AcquireDistributedLock(string resource, TimeSpan timeout)
         {
-            return new MySqlDistributedLock(_storage, resource, timeout, _storageOptions).Acquire();
+            return _storageOptions.AcquireLock(_storage, resource, timeout, _storageOptions, new CancellationToken());
         }
 
         public override string CreateExpiredJob(Job job, IDictionary<string, string> parameters, DateTime createdAt, TimeSpan expireIn)
@@ -247,7 +248,7 @@ namespace Hangfire.MySql
             {
                 connection.Execute(
                     $"update `{_storageOptions.TablesPrefix}Server` set LastHeartbeat = @now where Id = @id",
-                    new { now = DateTime.UtcNow, id = serverId });
+                    new {now = DateTime.UtcNow, id = serverId});
             });
         }
 
@@ -291,7 +292,7 @@ from (
         where `Key` = @key
         order by Id
      ) ranked
-where ranked.rank between @startingFrom and @endingAt",
+where ranked.`rank` between @startingFrom and @endingAt",
                         new { key = key, startingFrom = startingFrom + 1, endingAt = endingAt + 1 })
                     .ToList());
         }
@@ -299,6 +300,14 @@ where ranked.rank between @startingFrom and @endingAt",
         public override HashSet<string> GetAllItemsFromSet(string key)
         {
             if (key == null) throw new ArgumentNullException("key");
+
+            if (UseCustomScheduler)
+            {
+                if (key == "recurring-jobs")
+                    return new HashSet<string>();
+                else if (key == "recurring-jobs2")
+                    key = "recurring-jobs";
+            }
 
             return
                 _storage.UseConnection(connection =>
@@ -311,9 +320,22 @@ where ranked.rank between @startingFrom and @endingAt",
                 });
         }
 
-        public override string GetFirstByLowestScoreFromSet(string key, double fromScore, double toScore)
+        public IEnumerable<string> GetFirstByLowestScoreFromSet(string key, double fromScore, double toScore, int count)
         {
             if (key == null) throw new ArgumentNullException("key");
+            if (UseCustomScheduler)
+            {
+                if (key == "schedule")
+                    return new string[] { };
+                else if (key == "schedule2")
+                    key = "schedule";
+                
+                if (key == "recurring-jobs")
+                    return new string[] { };
+                else if (key == "recurring-jobs2")
+                    key = "recurring-jobs";
+            }
+
             if (toScore < fromScore)
                 throw new ArgumentException("The `toScore` value must be higher or equal to the `fromScore` value.");
 
@@ -324,11 +346,15 @@ where ranked.rank between @startingFrom and @endingAt",
                         $"from `{_storageOptions.TablesPrefix}Set` " +
                         "where `Key` = @key and Score between @from and @to " +
                         "order by Score " +
-                        "limit 1",
-                        new { key, from = fromScore, to = toScore })
-                        .SingleOrDefault());
+                        "limit " + count,
+                        new {key, from = fromScore, to = toScore}));
         }
 
+        public override string GetFirstByLowestScoreFromSet(string key, double fromScore, double toScore)
+        {
+            return GetFirstByLowestScoreFromSet(key, fromScore, toScore, 1).SingleOrDefault();
+        }
+        
         public override long GetCounter(string key)
         {
             if (key == null) throw new ArgumentNullException("key");
@@ -428,7 +454,7 @@ from (
         where `Key` = @key
         order by Id desc
      ) ranked
-where ranked.rank between @startingFrom and @endingAt";
+where ranked.`rank` between @startingFrom and @endingAt";
             return
                 _storage
                     .UseConnection(connection =>
@@ -499,5 +525,57 @@ order by Id desc";
                 return result.Count != 0 ? result : null;
             });
         }
+
+        private const int DB_DEADLOCK_RETRY_COUNT = 60;
+
+        public static T AttemptActionReturnObject<T>(Func<T> action, int? attempts = DB_DEADLOCK_RETRY_COUNT)
+        {
+            var attemptCount = 0;
+
+            do
+            {
+                attemptCount++;
+                try
+                {
+                    return action();
+                }
+                catch (MySqlException ex)
+                {
+                    if (attemptCount <= attempts)
+                    {
+                        switch (ex.Number)
+                        {
+                            case 1040: //too many connections
+                            case 1205: //(ER_LOCK_WAIT_TIMEOUT) Lock wait timeout exceeded
+                            case 1213: //(ER_LOCK_DEADLOCK) Deadlock found when trying to get lock
+                            case 1614: //transaction rolled back
+                            case 2003: //cannot connect
+                            case 2006: //server gone away
+                            case 2013: //lost connection during query
+                            case 2014: //commands out of sync
+                                Task.Delay(Math.Min(attemptCount*1000, 3000)).Wait();
+                                break;
+                            default:
+                            {
+                                if (ex.Message?.ToLower().Contains("timeout") == true)
+                                {
+                                    Task.Delay(Math.Min(attemptCount*1000, 3000)).Wait();
+                                    break;
+                                }
+                                else
+                                {
+                                    throw;
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+            } while (true);
+        }
+        
     }
 }

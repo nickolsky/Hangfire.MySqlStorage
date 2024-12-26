@@ -57,13 +57,16 @@ namespace Hangfire.MySql.JobQueue
             Logger.TraceFormat("RemoveFromQueue JobId={0}", JobId);
 
             //todo: unit test
-            _connection.Execute(
-                $"delete from `{_storageOptions.TablesPrefix}JobQueue` " +
-                "where Id = @id",
-                new
-                {
-                    id = _id
-                });
+            Retry.Do(() =>
+            {
+                _connection.Execute(
+                    $"delete from `{_storageOptions.TablesPrefix}JobQueue` " +
+                    "where Id = @id",
+                    new
+                    {
+                        id = _id
+                    });
+            }, TimeSpan.FromSeconds(3), 10);
 
             _removedFromQueue = true;
         }
@@ -73,14 +76,17 @@ namespace Hangfire.MySql.JobQueue
             Logger.TraceFormat("Requeue JobId={0}", JobId);
 
             //todo: unit test
-            _connection.Execute(
-                $"update `{_storageOptions.TablesPrefix}JobQueue` set FetchedAt = null " +
-                "where Id = @id",
-                new
-                {
-                    id = _id
-                });
-            _requeued = true;
+            Retry.Do(() =>
+            {
+                _connection.Execute(
+                    $"update `{_storageOptions.TablesPrefix}JobQueue` set FetchedAt = null " +
+                    "where Id = @id",
+                    new
+                    {
+                        id = _id
+                    });
+                _requeued = true;
+            }, TimeSpan.FromSeconds(3), 10);
         }
 
         public string JobId { get; private set; }

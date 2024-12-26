@@ -244,12 +244,12 @@ namespace Hangfire.MySql
             QueueCommand(x => x.Execute(
                 $@"
 delete lst
-from `{_storageOptions.TablesPrefix}List` lst
-	inner join (SELECT tmp.Id, @rownum := @rownum + 1 AS 'rank'
-		  		FROM `{_storageOptions.TablesPrefix}List` tmp, 
-       				(SELECT @rownum := 0) r ) ranked on ranked.Id = lst.Id
+from List lst
+	inner join (SELECT tmp.Id, @rownum := @rownum + 1 AS rank
+		  		FROM List tmp, 
+       				(SELECT @rownum := 0) r where tmp.Key = @key) ranked on ranked.Id = lst.Id
 where lst.Key = @key
-    and ranked.rank not between @start and @end",
+    and ranked.`rank` not between @start and @end",
                 new { key = key, start = keepStartingFrom + 1, end = keepEndingAt + 1 }));
         }
 
@@ -343,12 +343,16 @@ where lst.Key = @key
 
         public override void Commit()
         {
-            _storage.UseTransaction(connection =>
+            MySqlStorageConnection.AttemptActionReturnObject(() =>
             {
-                foreach (Action<MySqlConnection> command in _commandQueue)
+                _storage.UseTransaction(connection =>
                 {
-                    command(connection);
-                }
+                foreach (Action<MySqlConnection> command in _commandQueue)
+                    {
+                        command(connection);
+                    }
+                });
+                return 0;
             });
         }
 
