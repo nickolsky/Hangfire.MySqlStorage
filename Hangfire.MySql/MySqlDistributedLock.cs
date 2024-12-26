@@ -58,8 +58,7 @@ namespace Hangfire.MySql
 
             return MySqlStorageConnection.AttemptActionReturnObject(() =>
 
-                _storage.UseConnection(connection =>
-                    connection
+                    _connection
                     .Execute(
                         "SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED; " +
                         $"INSERT INTO `{_storageOptions.TablesPrefix}DistributedLock` (Resource, CreatedAt) " +
@@ -74,8 +73,7 @@ namespace Hangfire.MySql
                             resource,
                             now = DateTime.UtcNow, 
                             expired = DateTime.UtcNow.Add(timeout.Negate())
-                        }))
-            );
+                        }));
         }
 
         public void Dispose()
@@ -126,15 +124,14 @@ namespace Hangfire.MySql
                 return;
 
 
-            _storage.UseConnection(connection =>
-                connection
+            _connection
                 .Execute(
                     $"DELETE FROM `{_storageOptions.TablesPrefix}DistributedLock`  " +
                     "WHERE Resource = @resource",
                     new
                     {
                         resource = _resource
-                    }));
+                    });
         }
 
         public int CompareTo(object obj)

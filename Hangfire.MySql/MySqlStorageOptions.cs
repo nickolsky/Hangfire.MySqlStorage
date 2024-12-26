@@ -22,7 +22,7 @@ namespace Hangfire.MySql
             InvisibilityTimeout = TimeSpan.FromMinutes(30);
 
             TablesPrefix = DefaultTablesPrefix;
-            AcquireLock = (storage, resource, timeout, cancellationToken) => new MySqlDistributedLock(storage, resource, timeout, cancellationToken).Acquire();
+            AcquireLock = (storage, resource, timeout, cancellationToken) => new MySqlDistributedLock(storage.CreateAndOpenConnection(), resource, timeout,  this, cancellationToken).Acquire();
         }
 
         public System.Transactions.IsolationLevel? TransactionIsolationLevel { get; set; }

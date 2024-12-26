@@ -36,7 +36,7 @@ namespace Hangfire.MySql
             {
                 do
                 {
-                    using (_storage.Options.AcquireLock(_storage, "LockCounter", TimeSpan.FromMinutes(5), new CancellationToken()))
+                    using (_storageOptions.AcquireLock(_storage, "LockCounter", TimeSpan.FromMinutes(5), new CancellationToken()))
                     {
                         _storage.UseConnection(connection =>
                         {

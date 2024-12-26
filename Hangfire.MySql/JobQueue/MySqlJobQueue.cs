@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using Hangfire.Logging;
 using Hangfire.Storage;
@@ -12,6 +14,7 @@ namespace Hangfire.MySql.JobQueue
     internal class MySqlJobQueue : IPersistentJobQueue
     {
         private static readonly ILog Logger = LogProvider.GetLogger(typeof(MySqlJobQueue));
+        private static Semaphore _semaphoreSlim = new Semaphore(30, 30);
 
         private readonly MySqlStorage _storage;
         private readonly MySqlStorageOptions _options;

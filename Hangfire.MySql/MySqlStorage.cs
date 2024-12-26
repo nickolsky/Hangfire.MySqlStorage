@@ -25,6 +25,11 @@ namespace Hangfire.MySql
 
         public virtual PersistentJobQueueProviderCollection QueueProviders { get; private set; }
 
+        public MySqlStorage(string nameOrConnectionString)
+            : this(nameOrConnectionString, new MySqlStorageOptions())
+        {
+        }
+
         public MySqlStorage(string connectionString, MySqlStorageOptions storageOptions)
         {
             if (connectionString == null) throw new ArgumentNullException("connectionString");
@@ -47,8 +52,6 @@ namespace Hangfire.MySql
             {
                 _connectionString = _connectionString.TrimEnd(' ', ';') + ";Use Affected Rows=true";
             }*/
-            _options = options;
-
             if (storageOptions.PrepareSchemaIfNecessary)
             {
                 using (var connection = CreateAndOpenConnection())

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Dapper;
 using Hangfire.Common;
 using Hangfire.Logging;
 using Hangfire.MySql.Entities;
 using Hangfire.Server;
 using Hangfire.Storage;
+using MySqlConnector;
 
 namespace Hangfire.MySql
 {
@@ -34,7 +36,7 @@ namespace Hangfire.MySql
 
         public override IDisposable AcquireDistributedLock(string resource, TimeSpan timeout)
         {
-            return _storageOptions.AcquireLock(_storage, resource, timeout, _storageOptions, new CancellationToken());
+            return _storageOptions.AcquireLock(_storage, resource, timeout, new CancellationToken());
         }
 
         public override string CreateExpiredJob(Job job, IDictionary<string, string> parameters, DateTime createdAt, TimeSpan expireIn)

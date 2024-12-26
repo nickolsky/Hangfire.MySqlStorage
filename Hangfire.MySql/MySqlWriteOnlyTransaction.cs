@@ -244,8 +244,8 @@ namespace Hangfire.MySql
             QueueCommand(x => x.Execute(
                 $@"
 delete lst
-from List lst
-	inner join (SELECT tmp.Id, @rownum := @rownum + 1 AS rank
+from `{_storageOptions.TablesPrefix}List` lst
+	inner join (SELECT tmp.Id, @rownum := @rownum + 1 AS `rank`
 		  		FROM List tmp, 
        				(SELECT @rownum := 0) r where tmp.Key = @key) ranked on ranked.Id = lst.Id
 where lst.Key = @key
